@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - A Is For Everything Inc.</title>
+    
+    <!-- Bootstrap 5.3.0 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6.4.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --dark-color: #1f2937;
+            --light-color: #f8fafc;
+            --text-color: #374151;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        /* Header Styles */
+        .top-header {
+            background: var(--dark-color);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .navbar {
+            background: white !important;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary-color) !important;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            color: var(--text-color) !important;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .btn-inquire {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-inquire:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 120px 0 80px;
+            margin-top: 76px;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Blog Section */
+        .blog-section {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+
+        /* Featured Post */
+        .featured-post {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+        }
+
+        .featured-image {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 40px;
+            color: white;
+        }
+
+        .featured-badge {
+            background: var(--accent-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .featured-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .featured-meta {
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        /* Blog Cards */
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: none;
+            height: 100%;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .blog-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .blog-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .blog-content {
+            padding: 25px;
+        }
+
+        .blog-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        .blog-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .btn-read-more {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-read-more:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .category-item:hover {
+            color: var(--primary-color);
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+        }
+
+        .category-count {
+            background: var(--light-color);
+            color: var(--text-color);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+
+        .recent-post {
+            display: flex;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .recent-post:hover {
+            color: var(--primary-color);
+        }
+
+        .recent-post-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            margin-right: 15px;
+        }
+
+        .recent-post-content {
+            flex: 1;
+        }
+
+        .recent-post-title {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 5px;
+        }
+
+        .recent-post-date {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        /* Newsletter */
+        .newsletter-box {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .newsletter-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form {
+            margin-top: 20px;
+        }
+
+        .newsletter-input {
+            border: none;
+            border-radius: 25px;
+            padding: 12px 20px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .btn-subscribe {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-subscribe:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #111827;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-brand {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .featured-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <i class="fas fa-phone me-2"></i>
+                    <span>
++1 651 354 9855</span>
+                </div>
+                <div class="col-md-6 text-end">
+                    <i class="fas fa-envelope me-2"></i>
+                    <span>
+ais4everything@gmail.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/index.html">
+                <img src="assets/images/logo.png" alt="A4Everything" class="img-fluid" style="width: 100px; height: auto;">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+                <button class="btn btn-inquire">
+                    <i class="fas fa-paper-plane me-2"></i>Inquire Now
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1 class="page-title fade-in">Industry Insights</h1>
+                    <p class="page-subtitle fade-in">Stay informed with the latest trends and developments in global commodity trading</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Featured Post -->
+                    <article class="featured-post fade-in">
+                        <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80');">
+                            <div class="featured-overlay">
+                                <span class="featured-badge">Featured</span>
+                                <h2 class="featured-title">The Future of Global Sugar Trading: Market Trends and Opportunities</h2>
+                                <div class="featured-meta">
+                                    <i class="fas fa-calendar me-2"></i>December 15, 2024
+                                    <span class="mx-2">•</span>
+                                    <i class="fas fa-user me-2"></i>John Anderson
+                                    <span class="mx-2">•</span>
+                                    <i class="fas fa-clock me-2"></i>5 min read
+                                </div>
+                                <p>Explore the evolving landscape of global sugar trading, including emerging markets, sustainability initiatives, and technological innovations shaping the industry's future.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Blog Posts Grid -->
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <article class="card blog-card fade-in">
+                                <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80');">
+                                    <span class="blog-category">Market Analysis</span>
+                                </div>
+                                <div class="blog-content">
+                                    <h3 class="blog-title">Coffee Market Volatility: Understanding Price Fluctuations</h3>
+                                    <div class="blog-meta">
+                                        <div class="blog-author">
+                                            <div class="author-avatar">SM</div>
+                                            <span>Sarah Mitchell</span>
+                                        </div>
+                                        <span>Dec 12, 2024</span>
+                                    </div>
+                                    <p class="blog-excerpt">An in-depth analysis of factors contributing to coffee price volatility and strategies for managing risk in coffee trading.</p>
+                                    <a href="#" class="btn-read-more">Read More</a>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="col-md-6">
+                            <article class="card blog-card fade-in">
+                                <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80');">
+                                    <span class="blog-category">Industry News</span>
+                                </div>
+                                <div class="blog-content">
+                                    <h3 class="blog-title">Sustainable Rice Production: Environmental Impact and Solutions</h3>
+                                    <div class="blog-meta">
+                                        <div class="blog-author">
+                                            <div class="author-avatar">MC</div>
+                                            <span>Michael Chen</span>
+                                        </div>
+                                        <span>Dec 10, 2024</span>
+                                    </div>
+                                    <p class="blog-excerpt">Examining sustainable practices in rice production and their impact on global food security and environmental conservation.</p>
+                                    <a href="#" class="btn-read-more">Read More</a>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="col-md-6">
+                            <article class="card blog-card fade-in">
+                                <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80');">
+                                    <span class="blog-category">Energy</span>
+                                </div>
+                                <div class="blog-content">
+                                    <h3 class="blog-title">Aviation Fuel Demand: Post-Pandemic Recovery and Future Outlook</h3>
+                                    <div class="blog-meta">
+                                        <div class="blog-author">
+                                            <div class="author-avatar">JA</div>
+                                            <span>John Anderson</span>
+                                        </div>
+                                        <span>Dec 8, 2024</span>
+                                    </div>
+                                    <p class="blog-excerpt">Analyzing the recovery of aviation fuel demand following the pandemic and projections for future growth in the sector.</p>
+                                    <a href="#" class="btn-read-more">Read More</a>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="col-md-6">
+                            <article class="card blog-card fade-in">
+                                <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80');">
+                                    <span class="blog-category">Technology</span>
+                                </div>
+                                <div class="blog-content">
+                                    <h3 class="blog-title">Blockchain in Commodity Trading: Enhancing Transparency</h3>
+                                    <div class="blog-meta">
+                                        <div class="blog-author">
+                                            <div class="author-avatar">SM</div>
+                                            <span>Sarah Mitchell</span>
+                                        </div>
+                                        <span>Dec 5, 2024</span>
+                                    </div>
+                                    <p class="blog-excerpt">How blockchain technology is revolutionizing commodity trading by improving transparency, traceability, and efficiency.</p>
+                                    <a href="#" class="btn-read-more">Read More</a>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="col-md-6">
+                            <article class="card blog-card fade-in">
+                                <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80');">
+                                    <span class="blog-category">Global Trade</span>
+                                </div>
+                                <div class="blog-content">
+                                    <h3 class="blog-title">Emerging Markets: New Opportunities in Commodity Trading</h3>
+                                    <div class="blog-meta">
+                                        <div class="blog-author">
+                                            <div class="author-avatar">MC</div>
+                                            <span>Michael Chen</span>
+                                        </div>
+                                        <span>Dec 3, 2024</span>
+                                    </div>
+                                    <p class="blog-excerpt">Exploring untapped potential in emerging markets and strategies for successful commodity trading expansion.</p>
+                                    <a href="#" class="btn-read-more">Read More</a>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="col-md-6">
+                            <article class="card blog-card fade-in">
+                                <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80');">
+                                    <span class="blog-category">Regulations</span>
+                                </div>
+                                <div class="blog-content">
+                                    <h3 class="blog-title">International Trade Regulations: Compliance and Best Practices</h3>
+                                    <div class="blog-meta">
+                                        <div class="blog-author">
+                                            <div class="author-avatar">JA</div>
+                                            <span>John Anderson</span>
+                                        </div>
+                                        <span>Dec 1, 2024</span>
+                                    </div>
+                                    <p class="blog-excerpt">Understanding complex international trade regulations and implementing best practices for compliance in global markets.</p>
+                                    <a href="#" class="btn-read-more">Read More</a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <nav aria-label="Blog pagination" class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Categories -->
+                    <div class="sidebar fade-in">
+                        <h4 class="sidebar-title">Categories</h4>
+                        <a href="#" class="category-item">
+                            <span>Market Analysis</span>
+                            <span class="category-count">12</span>
+                        </a>
+                        <a href="#" class="category-item">
+                            <span>Industry News</span>
+                            <span class="category-count">8</span>
+                        </a>
+                        <a href="#" class="category-item">
+                            <span>Energy</span>
+                            <span class="category-count">6</span>
+                        </a>
+                        <a href="#" class="category-item">
+                            <span>Technology</span>
+                            <span class="category-count">4</span>
+                        </a>
+                        <a href="#" class="category-item">
+                            <span>Global Trade</span>
+                            <span class="category-count">10</span>
+                        </a>
+                        <a href="#" class="category-item">
+                            <span>Regulations</span>
+                            <span class="category-count">5</span>
+                        </a>
+                    </div>
+
+                    <!-- Recent Posts -->
+                    <div class="sidebar fade-in">
+                        <h4 class="sidebar-title">Recent Posts</h4>
+                        <a href="#" class="recent-post">
+                            <div class="recent-post-image" style="background-image: url('/assets/images/sugar.jpg');"></div>
+                            <div class="recent-post-content">
+                                <div class="recent-post-title">Sugar Market Trends in 2024</div>
+                                <div class="recent-post-date">December 15, 2024</div>
+                            </div>
+                        </a>
+                        <a href="#" class="recent-post">
+                            <div class="recent-post-image" style="background-image: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&h=60&q=80');"></div>
+                            <div class="recent-post-content">
+                                <div class="recent-post-title">Coffee Price Volatility Analysis</div>
+                                <div class="recent-post-date">December 12, 2024</div>
+                            </div>
+                        </a>
+                        <a href="#" class="recent-post">
+                            <div class="recent-post-image" style="background-image: url('https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&h=60&q=80');"></div>
+                            <div class="recent-post-content">
+                                <div class="recent-post-title">Sustainable Rice Production</div>
+                                <div class="recent-post-date">December 10, 2024</div>
+                            </div>
+                        </a>
+                        <a href="#" class="recent-post">
+                            <div class="recent-post-image" style="background-image: url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&h=60&q=80');"></div>
+                            <div class="recent-post-content">
+                                <div class="recent-post-title">Aviation Fuel Recovery</div>
+                                <div class="recent-post-date">December 8, 2024</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="newsletter-box fade-in">
+                        <h4 class="newsletter-title">Stay Updated</h4>
+                        <p>Subscribe to our newsletter for the latest industry insights and market updates.</p>
+                        <form class="newsletter-form">
+                            <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                            <button type="submit" class="btn btn-subscribe">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand">A4Everything</div>
+                    <p class="text-secondary">
+A Is For Everything Inc. is a dynamic company specializing in the import and distribution of essential commodities such as fuel, rice, sugar, and coffee.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="text-white mb-3">Quick Links</h6>
+                    <div class="footer-links">
+                        <a href="index.html" class="d-block mb-2">Home</a>
+                        <a href="about.html" class="d-block mb-2">About</a>
+                        <a href="products.html" class="d-block mb-2">Products</a>
+                        <a href="blog.html" class="d-block mb-2">Blog</a>
+                        <a href="contact.html" class="d-block">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="text-white mb-3">Products</h6>
+                    <div class="footer-links">
+                        <a href="#" class="d-block mb-2">ICUMSA 45 Sugar</a>
+                        <a href="#" class="d-block mb-2">Coffee Powder</a>
+                        <a href="#" class="d-block mb-2">Premium Rice</a>
+                        <a href="#" class="d-block mb-2">Jet Fuel</a>
+                        <a href="#" class="d-block">View All</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="text-white mb-3">Contact Info</h6>
+                    <div class="footer-links">
+                        <p class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>
+
+5701 Shingle Creek Parkway 318c Brooklyn Center MN 55430</p>
+                        <p class="mb-2"><i class="fas fa-phone me-2"></i>
++1 651 354 9855</p>
+                        <p class="mb-2"><i class="fas fa-envelope me-2"></i>
+ais4everything@gmail.com</p>
+                        <p><i class="fas fa-clock me-2"></i>Mon - Fri: 9:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4" style="border-color: #374151;">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-secondary mb-0">&copy; 2024 A Is For Everything Inc. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="footer-links">
+                        <a href="#" class="me-3">Privacy Policy</a>
+                        <a href="#" class="me-3">Terms of Service</a>
+                        <a href="#">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('.newsletter-input').value;
+            if (email) {
+                alert('Thank you for subscribing to our newsletter!');
+                this.reset();
+            }
+        });
+
+        // Initialize animations on page load
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.fade-in').forEach((el, index) => {
+                setTimeout(() => {
+                    if (el.getBoundingClientRect().top < window.innerHeight) {
+                        el.classList.add('visible');
+                    }
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
