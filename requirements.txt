@@ -10,5 +10,4 @@ tzdata==2024.1
 django-allauth
 cryptography
 requests
-gunicorn
-whitenoise
+
