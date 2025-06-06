@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -463,7 +464,7 @@ ais4everything@gmail.com</span>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="/index.html">
-                <img src="assets/images/logo.png" alt="A4Everything" class="img-fluid" style="width: 100px; height: auto;">
+                <img src="{% static 'assets/images/logo.png' %}" alt="A4Everything" class="img-fluid" style="width: 100px; height: auto;">
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -473,19 +474,19 @@ ais4everything@gmail.com</span>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link " href = "{% url 'home' %}"> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="products.html">Products</a>
+                        <a class="nav-link " href="{% url 'category_product_list' %}">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="blog.html">Blog</a>
+                        <a class="nav-link active" href="{% url 'blog' %}">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
                 
@@ -711,7 +712,7 @@ ais4everything@gmail.com</span>
                     <div class="sidebar fade-in">
                         <h4 class="sidebar-title">Recent Posts</h4>
                         <a href="#" class="recent-post">
-                            <div class="recent-post-image" style="background-image: url('/assets/images/sugar.jpg');"></div>
+                            <div class="recent-post-image" style="background-image: url('{% static 'assets/images/sugar.jpg' %}');"></div>
                             <div class="recent-post-content">
                                 <div class="recent-post-title">Sugar Market Trends in 2024</div>
                                 <div class="recent-post-date">December 15, 2024</div>
@@ -773,11 +774,11 @@ A Is For Everything Inc. is a dynamic company specializing in the import and dis
                 <div class="col-lg-2 col-md-6 mb-4">
                     <h6 class="text-white mb-3">Quick Links</h6>
                     <div class="footer-links">
-                        <a href="index.html" class="d-block mb-2">Home</a>
-                        <a href="about.html" class="d-block mb-2">About</a>
-                        <a href="products.html" class="d-block mb-2">Products</a>
-                        <a href="blog.html" class="d-block mb-2">Blog</a>
-                        <a href="contact.html" class="d-block">Contact</a>
+                        <a href="{% url 'home' %}" class="d-block mb-2">Home</a>
+                        <a href="{% url 'about' %}" class="d-block mb-2">About</a>
+                        <a href="{% url 'category_product_list' %}" class="d-block mb-2">Products</a>
+                        <a href="{% url 'blog' %}" class="d-block mb-2">Blog</a>
+                        <a href="{% url 'contact' %}" class="d-block">Contact</a>
                     </div>
                 </div>
                 

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -436,7 +437,7 @@ ais4everything@gmail.com</span>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="assets/images/logo.png" alt="A4Everything" class="img-fluid" style="width: 100px; height: auto;">
+                <img src="{% static 'assets/images/logo.png' %}" alt="A4Everything" class="img-fluid" style="width: 100px; height: auto;">
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -446,19 +447,19 @@ ais4everything@gmail.com</span>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
+                        <a class="nav-link active" href = "{% url 'home' %}"> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="products.html">Products</a>
+                        <a class="nav-link " href="{% url 'category_product_list' %}">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="blog.html">Blog</a>
+                        <a class="nav-link" href="{% url 'blog' %}">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="contact.html">Contact</a>
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
                 
@@ -560,7 +561,7 @@ ais4everything@gmail.com</span>
                 </div>
                 <div class="col-lg-6">
                     <div class="about-image fade-in">
-                        <img src="/assets/images/about.jpg" alt="About Us" class="img-fluid">
+                        <img src="{% static 'assets/images/about.jpg' %}" alt="About Us" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -578,7 +579,7 @@ ais4everything@gmail.com</span>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6">
                     <div class="card product-card fade-in">
-                        <div class="product-image" style="background-image: url('/assets/images/sugar.jpg');">
+                        <div class="product-image" style="background-image: url('	https://5.imimg.com/data5/IOS/Default/2023/12/366779528/KO/KA/NU/155543594/product-jpeg-500x500.png');">
                             <div class="product-overlay">
                                 <button class="btn btn-view-details">View Details</button>
                             </div>
